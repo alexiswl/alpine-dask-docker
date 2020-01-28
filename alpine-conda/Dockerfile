@@ -1,15 +1,17 @@
 FROM frolvlad/alpine-glibc:alpine-3.9_glibc-2.29
 LABEL MAINTAINER="Jim Crist"
 
-ENV CONDA_VERSION 4.7.12
-ENV CONDA_PATCH_VERSION 4.7.12.1
-ENV CONDA_FILENAME Miniconda3-$CONDA_PATCH_VERSION-Linux-x86_64.sh
-ENV CONDA_FILENAME_MD5 81c773ff87af5cfac79ab862942ab6b3
+ARG CONDA_VERSION=4.8.1
+ARG CONDA_PATCH_VERSION=4.7.12.1
+ARG CONDA_FILENAME=Miniconda3-$CONDA_PATCH_VERSION-Linux-x86_64.sh
+ARG CONDA_FILENAME_MD5=81c773ff87af5cfac79ab862942ab6b3
 
 # Tell Python not to recreate the bytecode files. Since this is a docker image,
 # these will be recreated every time, writing them just uses unnecessary disk
 # space.
 ENV PYTHONDONTWRITEBYTECODE=true
+# Set environment path to this conda
+ENV PATH=/opt/conda/bin:$PATH
 
 # We do the following all in one block:
 # - Create user and group anaconda
