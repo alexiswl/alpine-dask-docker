@@ -25,7 +25,7 @@ ENV PATH=/opt/conda/bin:$PATH
 # - Uninstall miniconda install dependencies
 # Allow chown into opt so that the user can write/ create additional installations
 
-RUN apk add --no-cache wget bzip2 bash findutils \
+RUN apk add --no-cache wget bzip2 bash findutils ca-certificates \
     && addgroup -S anaconda \
     && adduser -D -u 10151 anaconda -G anaconda \
     && wget --quiet https://repo.continuum.io/miniconda/${CONDA_FILENAME} \
